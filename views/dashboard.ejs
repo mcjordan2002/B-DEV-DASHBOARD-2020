@@ -1,0 +1,543 @@
+<html lang="en">
+<head>
+  <link href="style.css" rel="stylesheet" type="text/css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
+  <style>
+    @import url(https://fonts.googleapis.com/css?family=Muli:300,300i,400,400i,500,600);
+  </style>
+  <title>Dashboard</title>
+  <link rel="icon" href="/icon.png" type="image/x-icon">
+</head>
+  <body style="font-family: 'Muli', sans-serif;">
+    <nav style="background-color: #5c007a;">
+      <div class="nav-wrapper">
+        <div class="container">
+          <a class="brand-logo darken-1" href="/">
+            <img class="hide-on-med-and-down" src="/logo.png" alt="materialize logo" style="width: 50px; height: 30px;">
+            <span class="logo-text hide-on-med-and-down">Dashboard</span>
+          </a>
+          <ul id="nav-mobile" class="right hide-on-med-and-down">
+              <li><a href="/users/logout">Logout</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+<div class="row">
+  <div class="col s12 m4 l6">
+      <!-- covid/section -->
+      <section class="covid-section" style="margin-top: 100px;">
+        <div class="container">
+          <div class="card">
+            <div class="card-content">
+                <div class="container">
+                  <form action="/dashboard/covid" method="POST">
+                    <h2 class="center-align" style="color: #333333; font-weight: bolder;">Covid19</h2>
+                    <div class="row">
+                      <div class="input-field col s12">
+                        <label for="email">Enter a country name to get covid19 info</label>
+                        <input name="countries" type="text" placeholder="Enter a country" required='required'/>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <button type="submit" class="btn col s12" style="background: rgb(48,63,159);background: radial-gradient(circle, rgba(48,63,159,1) 0%, rgba(142,36,170,1) 100%); border-radius: 5px;">Go</button>
+                    </div>
+                  </form>
+                </div>
+
+                <div class="container">
+                  <div class="container">
+                    <div class="row">
+                      <% if(covid_parse!== null){ %>
+                        <div class="row">
+                          <div class="col s12 m8">
+                            <div class="card-panel">
+                              <table>
+                                <tbody>
+                                  <tr>
+                                    <td>Country: <%= covid_parse.country %> </td>
+                                  </tr>
+                                  <tr>
+                                    <td>Confirmed: <%= covid_parse.confirmed %></td>
+                                  </tr>
+                                  <tr>
+                                    <td>Recovered: <%= covid_parse.recovered %> </td>
+                                  </tr>
+                                  <tr>
+                                    <td>Death: <%= covid_parse.deaths %> </td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                            </div>
+                          </div>
+                        </div>      <% } %> 
+                    </div>
+                    <div class="col s12">
+                      <div class="card horizontal">
+                        <div class="card-image">
+                          <div class="container" style="background: rgb(185, 189, 218);background: radial-gradient(circle, rgb(131, 136, 167) 0%, rgba(142,36,170,1) 100%)">
+                          </div>  
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- covid/section -->
+  </div>
+
+  <div class="col s12 m4 l6">
+    <div class="card" style="margin-top: 100px;">
+      <div class="card-content">
+            <!-- advice/section -->
+            <section class="advice-section">
+              <div class="container">
+                <div class="container">
+                  <form action="/dashboard/advice" method="POST">
+                      <h2 class="center-align" style="color: #333333; font-weight: bolder;">Advice</h2>
+                        <div class="row">
+                          <h6 class="center"> Click and get random Advices !!!</h6>
+                              <div class="card">
+                                <div class="card-content center">
+                                  <% if(adv!== null){ %>
+                                    <p><%= adv %></p>
+                                  <% } %>
+                                  <% if(error !== null){ %>
+                                    <p><%= error %></p>
+                                  <% } %>
+                                </div>
+                              </div>  
+                              <button type="submit" class="btn modal-trigger tooltipped" data-position="bottom" data-tooltip="Click on me!" style="background: rgb(48,63,159);background: radial-gradient(circle, rgba(48,63,159,1) 0%, rgba(142,36,170,1) 100%); border-radius: 5px;">Get some advice !</button>
+                        </div>
+                    </form>
+                </div>
+              </div>
+              </div>
+            </section>
+            <!-- advice/section -->
+      </div>
+  </div>
+</div>
+
+<div class="row">
+
+  <div class="col s12 m4 l4">
+        <div class="card">
+        <div class="card-content">
+          <!-- chuck/section -->
+            <section class="chuck-section">
+              <div class="container">
+                  <form action="/dashboard/chuck" method="POST">
+                      <h2 class="center-align" style="color: #333333; font-weight: bolder;">Chuck</h2>
+                        <div class="row">
+                          <h4 class="center"> Click and get random jokes on Chuck !!!</h4>
+                              <div class="card">
+                                <div class="center">
+                                  <img src="https://api.chucknorris.io/img/chucknorris_logo_coloured_small.png" />
+                                </div>
+                                <div class="card-content center">
+                                  <% if(joke!== null){ %>
+                                    <p><%= joke %></p>
+                                  <% } %>
+                                  <% if(error !== null){ %>
+                                    <p><%= error %></p>
+                                  <% } %>
+                                </div>
+                              </div>  
+                              <button type="submit" class="btn modal-trigger tooltipped" data-position="bottom" data-tooltip="Click on me!" style="background: rgb(48,63,159);background: radial-gradient(circle, rgba(48,63,159,1) 0%, rgba(142,36,170,1) 100%); border-radius: 5px;">Yo !</button>
+                        </div>
+                    </form>
+              </div>
+              </div>
+            </section>
+          <!-- chuck/section -->
+        </div>
+  </div>
+
+  <div class="col s12 m4 l4">
+      <!-- getIp/section -->
+      <section class="getIp-section">
+        <div class="container">
+              <div class="card">
+                <div class="card-content">
+                  <form action="/dashboard/getIp" method="POST">
+                      <h2 class="center-align" style="color: #333333; font-weight: bolder;">Ip informations</h2>
+                        <div class="row">
+                          <h6 class="center"> Click and get informations thanks to ur ip adress !!!</h6>
+                              <div class="card">
+                                <div class="card-content center">
+                                  <% if(ipExist!== null){ %>
+                                    <div class="row">
+
+                                      <table class="striped">
+                                          <tbody>
+                                            <tr>
+                                              <td>IP Address</td>
+                                              <td><%= ipExist.ip %> </td>
+                                            </tr>
+                                            <tr>
+                                              <td>City</td>
+                                              <td><%= ipExist.city%> <td>
+                                            </tr>
+                                            <tr>
+                                              <td>Region</td>
+                                              <td><%= ipExist.country_capital %> </td>
+                                            </tr>
+                                            <tr>
+                                              <td>Region</td>
+                                              <td><img width="19" height="19" src="<%= ipExist.country_flag %> " alt=""><%= ipExist.country_code2 %>|<%= ipExist.country_name %></td>
+                                            </tr>
+                                            <tr>
+                                              <td>European Union</td>
+                                              <td><%= ipExist.is_eu %> </td>
+                                            </tr>
+                                            <tr>
+                                              <td>Latitude / Longitude</td>
+                                              <td><%= ipExist.latitude %>, <%= ipExist.latitude %> </td>
+                                            </tr>
+                                            <tr>
+                                              <td>Time Zone</td>
+                                              <td><%= ipExist.time_zone.name %> </td>
+                                            </tr>
+                                            <tr>
+                                              <td>Calling Code</td>
+                                              <td><%= ipExist.calling_code %> </td>
+                                            </tr>
+                                            <tr>
+                                              <td>Currency</td>
+                                              <td><%= ipExist.currency.code %> </td>
+                                            </tr>
+                                            <tr>
+                                              <td>Languages</td>
+                                              <td><%= ipExist.languages %> </td>
+                                            </tr>
+                                            <tr>
+                                              <td>Org</td>
+                                              <td><%= ipExist.isp %> </td>
+                                            </tr>
+                                          </tbody>
+                                      </table>
+                                      
+                                      </div>
+                                  <% } %>
+                                  <% if(error !== null){ %>
+                                    <p><%= error %></p>
+                                  <% } %>
+                                </div>
+                              </div>  
+                              <button type="submit" class="btn modal-trigger tooltipped" data-position="bottom" data-tooltip="Click on me!" style="background: rgb(48,63,159);background: radial-gradient(circle, rgba(48,63,159,1) 0%, rgba(142,36,170,1) 100%); border-radius: 5px;">Get Informations !</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+          </div>
+      </section>
+  </div>
+  <!-- getIp/section -->
+
+  <div class="col s12 m4 l4">
+    <!-- feed/section -->
+    <section class="rss-section">
+            <div class="card small">
+                <div class="card-content">
+                  <form action="/dashboard/rss" method="POST">
+                    <h2 class="center-align" style="color: #333333; font-weight: bolder;">Rss</h2>
+                    <div class="row">
+                      <h4 class="center">Get hourly trend of your country with rss feed</h4>
+                      <div class="card-content center">
+                        <div class="row">
+                          <button type="submit" class="btn col s12" style="background: rgb(48,63,159);background: radial-gradient(circle, rgba(48,63,159,1) 0%, rgba(142,36,170,1) 100%); border-radius: 5px;">Fetch</button>
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+            </div>
+  
+              <div class="container">
+                  <div class="row" style="overflow: scroll; max-height: 500px;">
+                    <% if(feedo !== null){ %>
+                      <% feedo.items.forEach(item => { %>
+                        <strong style="text-decoration: underline;">Title</strong><h6> <%= item.title %> </h6>
+                        <a href="<%= item.link %>"><%= item.link %></a><br><br>
+                        <% }); %> 
+                    <% } %>  
+                  </div>
+                    <div class="col s12">
+                      <div class="card horizontal">
+                        <div class="card-image">
+                          <div class="container" style="background: rgb(185, 189, 218);background: radial-gradient(circle, rgb(131, 136, 167) 0%, rgba(142,36,170,1) 100%)">
+                          </div>  
+                        </div>
+                      </div>
+                    </div>
+              </div>
+    </section>
+  </div>
+  <!-- feed/section -->
+</div>
+
+<div class="row">
+  <div class="col s12 m6">
+    <!-- anime/section -->
+      <section class="anime-section container card">
+        <div class="card">
+          <div class="card-content">
+            <form action="/dashboard/anime" method="POST">
+              <h2 class="center-align" style="color: #333333; font-weight: bolder;">Anime</h2>
+              <div class="row">
+                <div class="input-field col s12">
+                  <label for="email">Enter a keyword</label>
+                  <input name="animes" type="text" placeholder="Enter a keyword to get anime" required='required'/>
+                </div>
+              </div>
+              <div class="row">
+                <button type="submit" class="btn col s12" style="background: rgb(48,63,159);background: radial-gradient(circle, rgba(48,63,159,1) 0%, rgba(142,36,170,1) 100%); border-radius: 5px;">Go</button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+          <div class="row" style="overflow: scroll; max-height: 500px;">
+            <% if(anime_parse !== null){ %>
+              <% anime_parse.forEach(item => { %>
+              <div class="col s12 m6 l3 center" style="margin-bottom: 50px;">
+                <div class="row">
+                  <a href="<%= item.url %> ">
+                    <div class="card" style=" border: rgb(3, 3, 3); width: 150px; height: 230px;">
+                      <div class="card-image">
+                        <img style="height: 100%;width: 100%;object-fit: cover;" src="<%= item.image_url %>">
+                      </div>
+                      <div class="card-action">
+                        <h6 class="card-title text-puple" style="font-size: 0.7em"><%= item.title %></h6>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <% }); %>
+            <% } %>  
+          </div>
+      </div>
+      </section>
+      <!-- anime/section -->
+  </div>
+</div>
+
+
+<div class="row">
+  <div class="col s12 m6">
+    <div class="container card">
+      <!-- weather/section-->
+      <section class="weather-section">
+        <div class="container">
+          <div class="container">
+        <form action="/dashboard/weather" method="POST">
+          <h2 class="center-align" style="color: #333333; font-weight: bolder;">Weather</h2>
+          <div class="row">
+            <div class="input-field col s12">
+              <label for="email">Enter a city name</label>
+              <input name="city" type="text" placeholder="Enter City Name" required='required'/>
+            </div>
+          </div>
+          <div class="row">
+            <button type="submit" class="btn col s12" style="background: rgb(48,63,159);background: radial-gradient(circle, rgba(48,63,159,1) 0%, rgba(142,36,170,1) 100%); border-radius: 5px;">Fetch Weather</button>
+          </div>
+        </form>
+      </div>
+      </div>
+
+
+      <div class="container">
+        <div class="container">
+          <div class="row">
+            <div class="col s12">
+              <div class="card horizontal">
+                <div class="card-image">
+                  <div class="container" style="background: rgb(185, 189, 218);background: radial-gradient(circle, rgb(131, 136, 167) 0%, rgba(142,36,170,1) 100%)">
+                    <% if(icon !== null){ %>
+                    <img src=<%= icon %> />
+                    <h6 class=" container white-text"> <%= dn  %> </h6>
+                  </div>  
+                </div>
+                <div class="container">
+                    <div class="card-stacked">
+                      <div class="card-content">
+                        <h3><%= weather %></h3>
+                        <div><% icon %> </div>
+                        <table>
+                          <thead>
+                            <tr>
+                                <th>Temperature</th>
+                                <th>Pressure</th>
+                                <th>Humidity</th>
+                            </tr>
+                          </thead>
+                  
+                          <tbody>
+                            <tr>
+                              <td><%= maintemp %> °C</td>
+                              <td><%= mainpressure %> </td>
+                              <td><%= humidity %>%</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                </div>
+                <% } %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      </section>
+      <!-- weather/section-->
+    </div>
+  </div>
+
+  <div class="col s12 m6">
+    <!-- cinema/section -->
+      <section class="cinema-section card">
+        <div class="container">
+          <div class="container">
+            <form action="/dashboard/cinema" method="POST">
+          <h2 class="center-align" style="color: #333333; font-weight: bolder;">Cinema</h2>
+          <div class="row">
+            <div class="input-field col s12">
+              <label for="email">Enter a movie name</label>
+              <input name="movies" type="text" placeholder="Enter Movie Name and get description" required='required'/>
+            </div>
+          </div>
+          <div class="row">
+            <button type="submit" class="btn col s12" style="background: rgb(48,63,159);background: radial-gradient(circle, rgba(48,63,159,1) 0%, rgba(142,36,170,1) 100%); border-radius: 5px;">Fetch Cinema</button>
+          </div>
+        </form>
+      </div>
+      </div>
+
+
+      <div class="container">
+        <div class="container">
+          <div class="row">
+            <div class="col s12">
+              <div class="card horizontal">
+                <div class="card-image">
+                  <div class="container" style="background: rgb(185, 189, 218);background: radial-gradient(circle, rgb(131, 136, 167) 0%, rgba(142,36,170,1) 100%)">
+                    <% if(movie_img !== null){ %>
+                    <img src=<%= movie_img %> />
+                    <h6 class=" container white-text center"> <%= title %> </h6>
+                    <h6 class="center">Note: <%= vote_average %>/10 </h6>
+                  </div>  
+                </div>
+                <div class="container">
+                    <div class="card-stacked">
+                      <div class="card-content">
+                        <h3><%= title %></h3>
+                        <div> <p><%= overview  %> </p></div>
+                      </div>
+                    </div>
+                    <h5 class="center" style="text-decoration: underline">Release Date: <%= release_date  %> </h5>
+                    <% } %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      </section>
+      <!-- cinema/section -->
+  </div>
+</div>
+
+
+
+        <!-- giphy/section -->
+        <section id="ok" class="giphy-section container">
+          <button onclick="myFunction()">Click Me</button>
+          <div class="card">
+            <div class="card-content">
+              <form action="/dashboard/giphy" method="POST">
+            <h2 class="center-align" style="color: #333333; font-weight: bolder;">Giphy</h2>
+            <div class="row">
+              <div class="input-field col s12">
+                <label for="email">Enter a word</label>
+                <input name="gifs" type="text" placeholder="Enter a word to get gif" required='required'/>
+              </div>
+              <div class="card-content center">
+                  <% if(gif_url !== null){ %>
+                  <img src=<%= gif_url %> />
+                  <% } %>
+              </div>
+            </div>
+            <div class="row">
+              <button type="submit" class="btn col s12" style="background: rgb(48,63,159);background: radial-gradient(circle, rgba(48,63,159,1) 0%, rgba(142,36,170,1) 100%); border-radius: 5px;">Fetch Cinema</button>
+            </div>
+          </form>
+        </div>
+        </div>
+    
+    
+        <div class="container">
+          <div class="container">
+            <div class="row">
+              <div class="col s12">
+                <div class="card horizontal">
+                  <div class="card-image">
+                    <div class="container" style="background: rgb(185, 189, 218);background: radial-gradient(circle, rgb(131, 136, 167) 0%, rgba(142,36,170,1) 100%)">
+                    </div>  
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        </section>
+        <!-- giphy/section -->
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+  <script>
+    M.AutoInit();
+    $(document).ready(function(){
+    $('#show-weather').click(function() {
+      $('.weather-section').toggle("slide");
+    });
+    });
+    $(document).ready(function(){
+    $('#show-cinema').click(function() {
+      $('.cinema-section').toggle("slide");
+    });
+    });
+    $(document).ready(function(){
+      $('.tap-target').tapTarget('open');
+      $('.tap-target').tapTarget('close');
+    });
+    
+    $(document).ready(function(){
+      $('.dropdown-trigger').dropdown();
+      $('.sidenav').sidenav();
+
+      });
+      function myFunction() {
+      var x = document.getElementById("ok");
+      if (x.style.display === "none") {
+        x.style.display = "block";
+      } else {
+        x.style.display = "none";
+      }
+    }
+    </script>
+  </body>
+</html>

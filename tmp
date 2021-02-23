@@ -1,0 +1,32 @@
+<!-- exchange/section -->
+<section class="exchange-section">
+  <div class="container">
+    <div class="container">
+      <form action="/dashboard/exchange" method="POST">
+    <h2 class="center-align" style="color: #333333; font-weight: bolder;">Exchange</h2>
+        
+    <div class="row">
+      <div class="col s6">
+        <select id="fvs" required='required'>
+          <option value = "1">EUR</option>
+          <option value = "2">USD</option>
+          <option value = "3">PHP</option>
+        </select>
+      </div>
+      <div class="col s6">
+        <select id="svs" required='required'>
+          <option value = "1">EUR</option>
+          <option value = "2">USD</option>
+          <option value = "3">PHP</option>
+        </select>
+      </div>  
+      <button type="submit" class="btn col s12" style="background: rgb(48,63,159);background: radial-gradient(circle, rgba(48,63,159,1) 0%, rgba(142,36,170,1) 100%); border-radius: 5px;">Fetch Cinema</button>
+      <% if(converter !== null){ %>
+      <p><%= converter %> </p>
+      <% } %>
+    </div>
+  </form>
+  </div>
+</div>
+</section>
+<!-- exchange/section -->

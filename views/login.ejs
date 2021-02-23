@@ -1,0 +1,46 @@
+<%- include('partials/header'); -%>
+
+<section class="login" style="background-image: url('/bg-01.jpg'); min-height: 1000px; width: 100%;min-height: 100vh;display: -webkit-box;display: -webkit-flex;
+display: -moz-box;display: -ms-flexbox;display: flex;flex-wrap: wrap;justify-content: center;align-items: center;padding: 15px;background-repeat: no-repeat;background-position: center;
+background-position-x: center;background-position-y: center;background-size: cover;">
+  <div class="card" style="width: 500px;background: #fff;border-radius: 10px;overflow: hidden;">
+    <div class="card-content">
+      <div class="row">
+      <%include ./partials/messages%>
+      <form action="/users/login" method="POST">
+        <h2 class="center-align" style="color: #333333; font-weight: bolder;">Login</h2>
+        <div class="row">
+          <div class="input-field col s12">
+            <label for="email">Email</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+            />
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s12">
+            <label for="password">Password</label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+            />
+          </div>
+        </div>
+        <div class="row">
+          <button type="submit" class="btn col s12" style="background: rgb(48,63,159);background: radial-gradient(circle, rgba(48,63,159,1) 0%, rgba(142,36,170,1) 100%); border-radius: 5px;">Login</button>
+        </div>
+      </form>
+      </br>
+      <a href="/auth/google" class="btn btn-primary" style="background-color: #DB4437 !important;color: #fff !important;"><span class="fa fa-google"></span> google</a>
+      <p>
+        No Account ? <a href="/users/signup">signup</a>
+      </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<%- include('partials/footer'); -%>

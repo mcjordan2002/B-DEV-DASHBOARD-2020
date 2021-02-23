@@ -1,0 +1,45 @@
+{
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js"
+  },
+  "name": "dashboard",
+  "version": "1.0.1",
+  "description": "Dashboard is an Epitech project.",
+  "main": "app.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EpitechIT2020/B-DEV-500-COT-5-1-cardgames-jordan.vitou.git"
+  },
+  "author": "jordan.vitou,yoann.abgo,camelia.sama",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/EpitechIT2020/B-DEV-500-COT-5-1-cardgames-jordan.vitou/issues"
+  },
+  "homepage": "https://github.com/EpitechIT2020/B-DEV-500-COT-5-1-cardgames-jordan.vitou#readme",
+  "dependencies": {
+    "@supercharge/request-ip": "^1.1.2",
+    "bcryptjs": "^2.4.3",
+    "connect-flash": "^0.1.1",
+    "ejs": "^2.7.4",
+    "express": "^4.17.1",
+    "express-session": "^1.17.1",
+    "fetch": "^1.1.0",
+    "ip": "^1.1.5",
+    "local-ip": "^2.0.0",
+    "mongoose": "^5.11.1",
+    "node-fetch": "^2.6.1",
+    "openweather-apis": "^4.3.1",
+    "passport": "^0.4.1",
+    "passport-azure-ad-oauth2": "0.0.4",
+    "passport-facebook": "^3.0.0",
+    "passport-google-oauth20": "^2.0.0",
+    "passport-local": "^1.0.0",
+    "passport-yammer": "^0.2.0",
+    "request": "^2.88.2",
+    "rss-parser": "^3.10.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.4"
+  }
+}
