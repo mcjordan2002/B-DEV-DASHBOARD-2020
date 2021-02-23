@@ -20,4 +20,5 @@
 
 ### USAGE
 
-> ./build.sh
+> On linux ./build.sh
+> On windows do "npm install && npm start"
